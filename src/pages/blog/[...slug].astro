@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
+import { withBase } from "../../utils/urls";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -21,7 +22,7 @@ const { Content } = await post.render();
 >
   <article class="mdx-page post">
     <header>
-      <a class="back" href="/blog">← Back to blog</a>
+    <a class="back" href={withBase("/blog")}>← Back to blog</a>
       <p class="date">
         {post.data.pubDate.toLocaleDateString("en-US", {
           year: "numeric",

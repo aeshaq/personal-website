@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { withBase } from "../utils/urls";
 
 const posts = await getCollection("blog");
 const sortedPosts = posts
@@ -18,7 +19,7 @@ const sortedPosts = posts
         })}
       </span>
       <h2>
-        <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+        <a href={withBase(`/blog/${post.slug}`)}>{post.data.title}</a>
       </h2>
       <p>{post.data.description}</p>
     </article>

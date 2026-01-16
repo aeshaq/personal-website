@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
+import { withBase } from "../utils/urls";
 
 const homeEntries = await getCollection("home");
 const home = homeEntries[0];
@@ -13,7 +14,7 @@ const home = homeEntries[0];
       <h1>{home.data.heading}</h1>
       <p class="lead">{home.data.lead}</p>
       <div class="hero-actions">
-        <a class="btn primary" href="/resume">See my resume</a>
+        <a class="btn primary" href={withBase("/resume")}>See my resume</a>
       </div>
     </div>
     <div class="hero-card">
@@ -28,7 +29,7 @@ const home = homeEntries[0];
 
   <section class="grid">
     {home.data.tiles.map((tile) => (
-      <a class="panel" href={tile.href}>
+      <a class="panel" href={tile.href.startsWith("/") ? withBase(tile.href) : tile.href}>
         <h3>{tile.title}</h3>
         <p>{tile.description}</p>
       </a>

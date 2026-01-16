@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
+import { withBase } from "../../utils/urls";
 
 const projects = await getCollection("projects");
 const sortedProjects = projects
@@ -20,7 +21,7 @@ const sortedProjects = projects
       {sortedProjects.map((project) => (
         <article class="project-card">
           <h2 class="project-title">
-            <a href={`/projects/${project.slug}`}>{project.data.title}</a>
+            <a href={withBase(`/projects/${project.slug}`)}>{project.data.title}</a>
             <a class="project-link" href={project.data.github} aria-label="View on GitHub">
               <svg viewBox="0 0 24 24" aria-hidden="true" class="github-icon">
                 <path

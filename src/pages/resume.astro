@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
+import { withBase } from "../utils/urls";
 
 const resumes = await getCollection("resume");
 const resume = resumes[0];
@@ -39,7 +40,12 @@ const { Content } = await resume.render();
           </a>
         </div>
       </div>
-      <a class="download" href="/resume/Abdullah_e_Resume.pdf" target="_blank" rel="noreferrer">
+      <a
+        class="download"
+        href={withBase("/resume/Abdullah_e_Resume.pdf")}
+        target="_blank"
+        rel="noreferrer"
+      >
         Open PDF
       </a>
     </div>

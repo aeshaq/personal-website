@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
+import { withBase } from "../../utils/urls";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
@@ -16,7 +17,7 @@ const { Content } = await project.render();
 
 <Layout title={`${project.data.title} — Abdullah Eshaq`} description={project.data.description}>
   <article class="mdx-page project-detail">
-    <a class="back" href="/projects">← Back to projects</a>
+    <a class="back" href={withBase("/projects")}>← Back to projects</a>
     <header class="project-header">
       <div>
         <h1>{project.data.title}</h1>
