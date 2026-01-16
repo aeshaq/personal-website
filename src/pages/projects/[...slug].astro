@@ -1,0 +1,78 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+
+<Layout title={`${project.data.title} — Abdullah Eshaq`} description={project.data.description}>
+  <article class="mdx-page project-detail">
+    <a class="back" href="/projects">← Back to projects</a>
+    <header class="project-header">
+      <div>
+        <h1>{project.data.title}</h1>
+        <p class="summary">{project.data.description}</p>
+      </div>
+      <a class="project-link" href={project.data.github} aria-label="View on GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="github-icon">
+          <path
+            d="M12 2C6.48 2 2 6.58 2 12.26c0 4.57 2.87 8.44 6.84 9.8.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.36-3.37-1.36-.46-1.2-1.11-1.52-1.11-1.52-.9-.64.07-.63.07-.63 1 .07 1.52 1.06 1.52 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.08 0-1.12.38-2.03 1.01-2.75-.1-.26-.44-1.32.1-2.75 0 0 .83-.27 2.72 1.05a9.2 9.2 0 0 1 4.95 0c1.88-1.32 2.72-1.05 2.72-1.05.54 1.43.2 2.49.1 2.75.63.72 1.01 1.63 1.01 2.75 0 3.95-2.35 4.82-4.59 5.07.36.32.68.95.68 1.91 0 1.38-.01 2.49-.01 2.83 0 .27.18.59.69.49 3.96-1.36 6.83-5.23 6.83-9.8C22 6.58 17.52 2 12 2z"
+          />
+        </svg>
+      </a>
+    </header>
+    <p class="meta">Role: {project.data.role} · Stack: {project.data.stack}</p>
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .project-detail {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .summary {
+    color: var(--ink-soft);
+  }
+
+  .content :global(p) {
+    line-height: 1.7;
+  }
+
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+
+  .back:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 720px) {
+    .project-header {
+      flex-direction: column;
+    }
+  }
+</style>

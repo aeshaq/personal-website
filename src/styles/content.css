@@ -1,0 +1,86 @@
+.mdx-page h1 {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+}
+
+.pill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.2rem 0 2rem;
+}
+
+.pill-grid span {
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(234, 95, 60, 0.12);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.project-list {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  padding: 1.6rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: var(--radius);
+  border: 1px solid rgba(15, 26, 26, 0.08);
+  box-shadow: var(--shadow);
+}
+
+.project-card h2 {
+  margin-top: 0;
+}
+
+.meta {
+  display: block;
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.project-link {
+  display: inline-flex;
+  margin-left: 0.6rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.project-title {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.github-icon {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.posts {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.post-card {
+  padding: 1.6rem;
+  background: rgba(255, 255, 255, 0.68);
+  border-radius: var(--radius);
+  border: 1px solid rgba(15, 26, 26, 0.08);
+}
+
+.post-card h2 {
+  margin: 0.4rem 0;
+}
+
+.date {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}

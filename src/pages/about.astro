@@ -1,0 +1,14 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const aboutEntries = await getCollection("about");
+const about = aboutEntries[0];
+const { Content } = await about.render();
+---
+
+<Layout title={about.data.title} description={about.data.description}>
+  <section class="mdx-page">
+    <Content />
+  </section>
+</Layout>
