@@ -15,7 +15,11 @@ const { project } = Astro.props;
 const { Content } = await project.render();
 ---
 
-<Layout title={`${project.data.title} — Abdullah Eshaq`} description={project.data.description}>
+<Layout
+  title={`${project.data.title} — Abdullah Eshaq`}
+  description={project.data.description}
+  showHomeButton={false}
+>
   <article class="mdx-page project-detail">
     <a class="back" href={withBase("/projects")}>← Back to projects</a>
     <header class="project-header">
@@ -31,7 +35,7 @@ const { Content } = await project.render();
         </svg>
       </a>
     </header>
-    <p class="meta">Role: {project.data.role} · Stack: {project.data.stack}</p>
+    <p class="meta">Stack: {project.data.stack}</p>
     <div class="content">
       <Content />
     </div>
